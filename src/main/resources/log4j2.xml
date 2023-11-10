@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration strict="true" name="MiProyectoConfig">
+    <Properties>
+        <Property name="debugFileName">error.log</Property>
+        <Property name="infoFileName">info.log</Property>
+        <Property name="traceFileName">warn.log</Property>
+    </Properties>
+    <Appenders>
+        <File name="infoFile" fileName="${infoFileName}">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+        </File>
+        <File name="errorFile" fileName="${debugFileName}">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+        </File>
+        <File name="warnFile" fileName="${traceFileName}">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+        </File>
+        <Console name="console">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="infoFile"/>
+            <AppenderRef ref="errorFile"/>
+            <AppenderRef ref="warnFile"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
